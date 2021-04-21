@@ -127,7 +127,7 @@ def provision(image, inventory_location, vars)
     raise 'All front facing ports are in use.' if front_facing_port == 2230
   end
   full_container_name = "#{image.gsub(%r{[\/:\.]}, '_')}-#{front_facing_port}"
-  deb_family_systemd_volume = if (image =~ %r{debian|ubuntu}) && (image !~ %r{debian8|ubuntu14})
+  deb_family_systemd_volume = if (image =~ %r{debian|ubuntu|centos}) && (image !~ %r{debian8|ubuntu14})
                                 '--volume /sys/fs/cgroup:/sys/fs/cgroup:ro'
                               else
                                 ''
